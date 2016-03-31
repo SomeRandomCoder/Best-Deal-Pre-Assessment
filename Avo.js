@@ -30,3 +30,60 @@ for(var i = 0; i< array.length; i++){
 console.log(map);
 return map;
 };
+
+exports.pricePerAvo = function(map){
+  var singlePrice =[]
+
+  for(x = 0; x< map.length; x++){
+    var result = map[x].price / map[x].quantity;
+    var num = Number(result).toFixed(2);
+  singlePrice.push({
+    Deal: x+1,
+    pricePerAvo: num
+  });
+}
+  console.log(singlePrice);
+  return singlePrice;
+};
+
+exports.cheapestDeal= function(singlePrice){
+
+    for (var i=0; i<1; i++){
+        singlePrice.sort(function(a,b){
+          return a.pricePerAvo - b.pricePerAvo;
+        });
+    }
+    console.log(singlePrice[0]);
+    return singlePrice[0];
+}
+
+exports.expensiveDeal=function(singlePrice){
+  for (var i=0; i<1; i++){
+      singlePrice.sort(function(a,b){
+        return b.pricePerAvo - a.pricePerAvo;
+      });
+  }
+  console.log(singlePrice[0]);
+  return singlePrice[0];
+};
+
+exports.average=function(map){
+  var total =0;
+  var totalAvos=0;
+  for(var i =0; i< map.length;i++){
+  total +=  map[i].price;
+  }
+  var Total = Number(total);
+
+  for(var x = 0; x< map.length; x++){
+    totalAvos +=  map[x].quantity;
+  }
+
+  var TotalAvos = Number(totalAvos);
+  var avg = Total / TotalAvos;
+
+  console.log("Total: " + Total.toFixed(2));
+  console.log("Average: " + avg.toFixed(2));
+  return avg.toFixed(2);
+  return Total;
+};
